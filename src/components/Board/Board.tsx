@@ -68,7 +68,7 @@ export const Board: React.FC = () => {
     };
 
     const jogar = (linha: number, coluna: number) => {
-        return console.log("*** posicoes jogaveis", posicoesJogaveis());
+        // return console.log("*** posicoes jogaveis", posicoesJogaveis());
     };
 
     return (
