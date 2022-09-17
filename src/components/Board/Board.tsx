@@ -5,7 +5,7 @@ export const Board: React.FC = () => {
     const [ goal, setGoal ] = useState<any[][]>([
         ['1','2','3'],
         ['4','5','6'],
-        ['7','8',' ']
+        ['7','8',null]
     ]);
 
     const [ initialState, setInitialState ] = useState<any[][]>([
@@ -57,7 +57,7 @@ export const Board: React.FC = () => {
         }
     };
 
-    const posicoesJogaveis = () => {
+    const posicoesLivres = () => {
         let posicao = [];
         for(let i = 0; i <= 2; i++) {
             for(let j = 0; j <= 2; j++) {
@@ -68,7 +68,18 @@ export const Board: React.FC = () => {
     };
 
     const jogar = (linha: number, coluna: number) => {
-        // return console.log("*** posicoes jogaveis", posicoesJogaveis());
+        if (linha < 2 && initialState[linha+1][coluna] === null) {
+            return jogadas.downMove(linha, coluna);
+        }
+        if (linha > 0 && initialState[linha-1][coluna] === null) {
+            return jogadas.upMove(linha, coluna);
+        }
+        if (coluna < 2 && initialState[linha][coluna+1] === null) {
+            return jogadas.rightMove(linha, coluna);
+        }
+        if (coluna > 0 && initialState[linha][coluna-1] === null) {
+            return jogadas.leftMove(linha, coluna);
+        }
     };
 
     return (
